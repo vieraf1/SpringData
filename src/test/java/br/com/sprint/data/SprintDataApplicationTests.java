@@ -1,10 +1,10 @@
-package br.com.alura.spring.data;
+package br.com.sprint.data;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SpringDataApplicationTests {
+class SprintDataApplicationTests {
 
 	@Test
 	void contextLoads() {
