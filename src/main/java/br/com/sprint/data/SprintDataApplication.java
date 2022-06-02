@@ -1,19 +1,21 @@
 package br.com.sprint.data;
 
+import java.util.Scanner;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import br.com.sprint.data.model.Cargo;
-import br.com.sprint.data.repository.CargoRepository;
+import br.com.sprint.data.service.CrudCargoService;
 
 @SpringBootApplication
 public class SprintDataApplication implements CommandLineRunner {
 	
-	private final CargoRepository cargoRepository;
+	private final CrudCargoService crudCargoService;
+	private boolean system = true;
 	
-	public SprintDataApplication(CargoRepository cargoRepository) {
-		this.cargoRepository = cargoRepository;
+	public SprintDataApplication(CrudCargoService crudCargoService) {
+		this.crudCargoService = crudCargoService;
 	}
 
 	public static void main(String[] args) {
@@ -22,10 +24,20 @@ public class SprintDataApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Cargo cargo = new Cargo();
-		cargo.setDescricao("Desenvolvedor de software");
+		Scanner scanner = new Scanner(System.in);
 		
-		cargoRepository.save(cargo);
+		while(system) {
+			System.out.println("Qual ação deseja executar?");
+			System.out.println("0 - Sair");
+			System.out.println("1 - Cargo");
+			
+			int action = scanner.nextInt();
+			if(action == 1) {
+				crudCargoService.inicial(scanner);
+			} else {
+				system = false;
+			}
+		}
 	}
 
 }
