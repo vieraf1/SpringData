@@ -1,6 +1,5 @@
 package br.com.sprint.data.service;
 
-import java.util.List;
 import java.util.Scanner;
 
 import org.springframework.stereotype.Service;
