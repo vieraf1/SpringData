@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import br.com.sprint.data.service.CrudCargoService;
 import br.com.sprint.data.service.CrudFuncionarioService;
 import br.com.sprint.data.service.CrudUnidadeService;
+import br.com.sprint.data.service.RelatoriosService;
 
 @SpringBootApplication
 public class SprintDataApplication implements CommandLineRunner {
@@ -16,13 +17,15 @@ public class SprintDataApplication implements CommandLineRunner {
 	private final CrudCargoService crudCargoService;
 	private final CrudUnidadeService crudUnidadeService;
 	private final CrudFuncionarioService crudFuncionarioService;
+	private final RelatoriosService relatoriosService;
 	private boolean system = true;
 	
 	public SprintDataApplication(CrudCargoService crudCargoService, CrudUnidadeService crudUnidadeService,
-			CrudFuncionarioService crudFuncionarioService) {
+			CrudFuncionarioService crudFuncionarioService, RelatoriosService relatoriosService) {
 		this.crudCargoService = crudCargoService;
 		this.crudUnidadeService = crudUnidadeService;
 		this.crudFuncionarioService = crudFuncionarioService;
+		this.relatoriosService = relatoriosService;
 	}
 
 	public static void main(String[] args) {
@@ -39,6 +42,7 @@ public class SprintDataApplication implements CommandLineRunner {
 			System.out.println("1 - Cargo");
 			System.out.println("2 - Unidade");
 			System.out.println("3 - Funcionario");
+			System.out.println("4 - Relatórios");
 			
 			int action = scanner.nextInt();
 			switch(action) {
@@ -50,6 +54,9 @@ public class SprintDataApplication implements CommandLineRunner {
 					break;
 				case 3:
 					crudFuncionarioService.inicial(scanner);
+					break;
+				case 4:
+					relatoriosService.inicial(scanner);
 					break;
 				case 0:
 					system = false;
