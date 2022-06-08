@@ -14,10 +14,14 @@ public interface FuncionarioRepository extends CrudRepository<Funcionario, Integ
 	
 	public List<Funcionario> findByNome(String nome);
 	
-	@Query(value = "SELECT FROM Funcionario f "
+	@Query(value = "SELECT f FROM Funcionario f "
 			+ " WHERE f.nome = :nome "
 			+ " AND f.salario >= :salario"
 			+ " AND f.dataContratacao = :data")
 	public List<Funcionario> findNomeDataContratacaoSalarioMaior(String nome, Double salario, LocalDate data);
+	
+	@Query(value = "SELECT * FROM FUNCIONARIOS f "
+			+ " WHERE f.data_contratacao >= :data", nativeQuery = true)
+	public List<Funcionario> findDataContratacaoMaior(LocalDate data);
 	
 }
