@@ -9,6 +9,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
 import br.com.sprint.data.model.Funcionario;
+import br.com.sprint.data.model.projecao.FuncionarioProjecao;
 
 @Repository
 public interface FuncionarioRepository extends PagingAndSortingRepository<Funcionario, Integer> {
@@ -27,4 +28,6 @@ public interface FuncionarioRepository extends PagingAndSortingRepository<Funcio
 			+ " WHERE f.data_contratacao >= :data", nativeQuery = true)
 	public List<Funcionario> findDataContratacaoMaior(LocalDate data);
 	
+	@Query(value = "SELECT id, nome, salario FROM FUNCIONARIOS", nativeQuery = true)
+	public List<FuncionarioProjecao> findFuncionarioSalario();
 }
