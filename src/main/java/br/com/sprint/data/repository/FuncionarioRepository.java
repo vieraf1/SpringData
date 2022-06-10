@@ -3,6 +3,7 @@ package br.com.sprint.data.repository;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
@@ -13,6 +14,8 @@ import br.com.sprint.data.model.Funcionario;
 public interface FuncionarioRepository extends PagingAndSortingRepository<Funcionario, Integer> {
 	
 	public List<Funcionario> findByNome(String nome);
+	
+	public List<Funcionario> findByNome(String nome, Pageable pageable);
 	
 	@Query(value = "SELECT f FROM Funcionario f "
 			+ " WHERE f.nome = :nome "
